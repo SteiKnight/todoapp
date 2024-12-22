@@ -18,6 +18,13 @@ class _HomePageState extends State<HomePage> {
     ["Do Excercise", false],
   ];
 
+  //delete function
+  void deleteTask(int index) {
+    setState(() {
+      toDoList.removeAt(index);
+    });
+  }
+
   //checkbox was tapped
   void checkBoxChanged(bool? value, int index) {
     setState(() {
@@ -34,6 +41,14 @@ class _HomePageState extends State<HomePage> {
     Navigator.of(context).pop();
   }
 
+  //cancel task add
+  void cancelNewTask() {
+    setState(() {
+      Navigator.of(context).pop();
+      _controller.clear();
+    });
+  }
+
   //new task method
   void createNewTask() {
     showDialog(
@@ -41,7 +56,7 @@ class _HomePageState extends State<HomePage> {
       builder: (context) => DialogBox(
         controller: _controller,
         onSave: saveNewTask,
-        onCancel: () => Navigator.of(context).pop(),
+        onCancel: cancelNewTask,
       ),
     );
   }
@@ -70,6 +85,7 @@ class _HomePageState extends State<HomePage> {
               taskName: toDoList[index][0],
               taskCompleted: toDoList[index][1],
               onChanged: (value) => checkBoxChanged(value, index),
+              deleteFunction: (context) => deleteTask(index),
             );
           },
         ));

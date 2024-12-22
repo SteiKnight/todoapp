@@ -16,7 +16,7 @@ class DialogBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
         backgroundColor: Colors.deepPurple[400],
-        content: Container(
+        content: SizedBox(
           height: 120,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
